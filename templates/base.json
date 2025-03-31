@@ -1,0 +1,19 @@
+{
+    "project": {
+        "cmd": {
+            "<main_package>": {
+                "main.go": "file"
+            }
+        },
+        "config": {
+            "config.go": "file"
+        },
+        "LICENSE": "file",
+        "Makefile": "file",
+        "README.md": "file"
+    },
+
+    "config": {
+        "name": "default-go-project"
+    }
+}
