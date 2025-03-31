@@ -7,10 +7,12 @@ import (
 
 	"github.com/paoloanzn/go-bootstrap/parsing"
 	"github.com/paoloanzn/go-bootstrap/format"
+	"github.com/paoloanzn/go-bootstrap/config"
 )
 
 func CreateDir(path string, abortIfFailed bool) (error) {
-	formattedPath := format.FormatPath(path)
+	formattedPath := format.MatchWildCards(path)
+	formattedPath = format.FormatPath(formattedPath)
 
 	if _, err := os.Stat(formattedPath); !os.IsNotExist(err) {
 		return nil
@@ -30,7 +32,8 @@ func CreateDir(path string, abortIfFailed bool) (error) {
 }
 
 func CreateFile(path string, abortIfFailed bool) (error) {
-	formattedPath := format.FormatPath(path)
+	formattedPath := format.MatchWildCards(path)
+	formattedPath = format.FormatPath(formattedPath)
 
 	if _, err := os.Stat(formattedPath); !os.IsNotExist(err) {
 		return nil
@@ -86,10 +89,11 @@ func TraverseNode(pNode map[string]interface{}, prefixPath string) (error) {
 func Bootstrap(pJsonTemplate *parsing.JSONTemplate) (error) {
 	projectConfig := pJsonTemplate.Config
 
-	projectFolderName, exists := projectConfig["name"] 
+	projectFolderName, exists := projectConfig["name"]
 	if !exists {
 		return fmt.Errorf("Error parsing config.name from template config file.")
 	}
+	config.Cfg.ProjectName = projectFolderName.(string)
 
 	err := CreateDir(projectFolderName.(string), true)
 	if err != nil {
