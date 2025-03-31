@@ -1,16 +1,16 @@
 package bootstrap
 
 import (
-	"os"
 	"fmt"
 	"log"
+	"os"
 
-	"github.com/paoloanzn/go-bootstrap/parsing"
-	"github.com/paoloanzn/go-bootstrap/format"
 	"github.com/paoloanzn/go-bootstrap/config"
+	"github.com/paoloanzn/go-bootstrap/format"
+	"github.com/paoloanzn/go-bootstrap/parsing"
 )
 
-func CreateDir(path string, abortIfFailed bool) (error) {
+func CreateDir(path string, abortIfFailed bool) error {
 	formattedPath := format.MatchWildCards(path)
 	formattedPath = format.FormatPath(formattedPath)
 
@@ -31,7 +31,7 @@ func CreateDir(path string, abortIfFailed bool) (error) {
 	return nil
 }
 
-func CreateFile(path string, abortIfFailed bool) (error) {
+func CreateFile(path string, abortIfFailed bool) error {
 	formattedPath := format.MatchWildCards(path)
 	formattedPath = format.FormatPath(formattedPath)
 
@@ -40,20 +40,20 @@ func CreateFile(path string, abortIfFailed bool) (error) {
 	}
 
 	f, err := os.Create(formattedPath)
-    if err != nil {
+	if err != nil {
 		if abortIfFailed {
-        	log.Fatalf("Fatal: %v\n", err)
+			log.Fatalf("Fatal: %v\n", err)
 		} else {
 			return err
 		}
-    }
-    defer f.Close()
+	}
+	defer f.Close()
 
 	fmt.Printf("Created %s\n", formattedPath)
 	return nil
 }
 
-func TraverseNode(pNode map[string]interface{}, prefixPath string) (error) {
+func TraverseNode(pNode map[string]interface{}, prefixPath string) error {
 	for name, value := range pNode {
 		if value == "file" {
 			fullPath := fmt.Sprintf("%s%s", prefixPath, name)
@@ -85,8 +85,7 @@ func TraverseNode(pNode map[string]interface{}, prefixPath string) (error) {
 	return nil
 }
 
-
-func Bootstrap(pJsonTemplate *parsing.JSONTemplate) (error) {
+func Bootstrap(pJsonTemplate *parsing.JSONTemplate) error {
 	projectConfig := pJsonTemplate.Config
 
 	projectFolderName, exists := projectConfig["name"]

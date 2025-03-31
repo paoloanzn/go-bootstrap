@@ -6,7 +6,7 @@ import (
 	"github.com/paoloanzn/go-bootstrap/config"
 )
 
-func DefaultWildCards() (map[string]string) {
+func DefaultWildCards() map[string]string {
 	w := make(map[string]string)
 
 	w["<main_package>"] = config.Cfg.ProjectName
@@ -14,12 +14,12 @@ func DefaultWildCards() (map[string]string) {
 	return w
 }
 
-func MatchWildCards(s string) (string) {
+func MatchWildCards(s string) string {
 	defaults := DefaultWildCards()
 	re := regexp.MustCompile(`<[^>]+>`) // match <string> pattern
 
 	replaced := s // copy
-	
+
 	allMatches := re.FindAllStringSubmatch(s, -1)
 	for _, m := range allMatches {
 		if len(m) > 0 {
@@ -33,4 +33,3 @@ func MatchWildCards(s string) (string) {
 
 	return replaced
 }
-

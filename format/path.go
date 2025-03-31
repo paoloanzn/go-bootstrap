@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func FormatPath(path string) (string) {
+func FormatPath(path string) string {
 	workingDirPrefix := "./"
 	firstChar := path[0]
 

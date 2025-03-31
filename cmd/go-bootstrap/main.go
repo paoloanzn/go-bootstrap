@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"log"
+	"os"
 
+	"github.com/paoloanzn/go-bootstrap/bootstrap"
 	"github.com/paoloanzn/go-bootstrap/config"
 	"github.com/paoloanzn/go-bootstrap/parsing"
-	"github.com/paoloanzn/go-bootstrap/bootstrap"
 )
 
 func main() {

@@ -1,16 +1,15 @@
 package parsing
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
-	"encoding/json"
 	"os"
-	
 )
 
 type JSONTemplate struct {
-	Project interface{} `json:"project"`
-	Config map[string]interface{} `json:"config"`
+	Project interface{}            `json:"project"`
+	Config  map[string]interface{} `json:"config"`
 }
 
 func ParseTemplate(filePath string) (*JSONTemplate, error) {
