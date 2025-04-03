@@ -11,10 +11,10 @@ func TestFormatPath(t *testing.T) {
 		input    string
 		expected string
 	}{
-		{input: "./example", expected: "./example"},  // Already formatted relative path
+		{input: "./example", expected: "./example"},           // Already formatted relative path
 		{input: "/absolute/path", expected: "/absolute/path"}, // Absolute path
 		{input: "relative/path", expected: "./relative/path"}, // Relative path without './'
-		{input: ".test", expected: "./.test"},                        // Single dot
+		{input: ".test", expected: "./.test"},                 // Single dot
 	}
 
 	for _, test := range tests {
@@ -36,9 +36,9 @@ func TestMatchWildCards(t *testing.T) {
 		input    string
 		expected string
 	}{
-		{"<main_package>", "TestProject"},                   // Single wildcard
-		{"This is <main_package>", "This is TestProject"},   // Wildcard in a sentence
-		{"No wildcards here", "No wildcards here"},          // No wildcards
+		{"<main_package>", "TestProject"},                                              // Single wildcard
+		{"This is <main_package>", "This is TestProject"},                              // Wildcard in a sentence
+		{"No wildcards here", "No wildcards here"},                                     // No wildcards
 		{"Multiple <main_package> <main_package>", "Multiple TestProject TestProject"}, // Multiple instances of the same wildcard
 	}
 
@@ -51,4 +51,3 @@ func TestMatchWildCards(t *testing.T) {
 		})
 	}
 }
-
