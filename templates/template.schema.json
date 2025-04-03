@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "go-bootstrap Template Schema",
+  "type": "object",
+  "properties": {
+    "project": {
+      "$ref": "#/definitions/node"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": true
+    }
+  },
+  "required": ["project", "config"],
+  "additionalProperties": false,
+  "definitions": {
+    "node": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["file"]
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "$ref": "#/definitions/node" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}
