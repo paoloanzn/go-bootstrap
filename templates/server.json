@@ -1,0 +1,24 @@
+{
+    "project": {
+        "cmd": {
+            "server": {
+                "main.go": "file"
+            }
+        },
+        "http": {
+            "handler.go": "file",
+            "routes.go": "file"
+        },
+        "websocket": {
+            "handler.go": "file",
+            "server.go": "file"
+        },
+        "go.mod": "file",
+        "Makefile": "file",
+        "README.md": "file"
+    },
+
+    "config": {
+        "name": "go-backend"
+    }
+}
