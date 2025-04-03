@@ -11,6 +11,14 @@ import (
 )
 
 func CreateDir(path string, abortIfFailed bool) error {
+	if path == "" {
+		if abortIfFailed {
+			log.Fatalf("Fatal: empty path is invalid\n")
+		} else {
+			return fmt.Errorf("Empty path is not valid.")
+		}
+	}
+
 	formattedPath := format.MatchWildCards(path)
 	formattedPath = format.FormatPath(formattedPath)
 
@@ -32,6 +40,14 @@ func CreateDir(path string, abortIfFailed bool) error {
 }
 
 func CreateFile(path string, abortIfFailed bool) error {
+	if path == "" {
+		if abortIfFailed {
+			log.Fatalf("Fatal: empty path is invalid\n")
+		} else {
+			return fmt.Errorf("Empty path is not valid.")
+		}
+	}
+
 	formattedPath := format.MatchWildCards(path)
 	formattedPath = format.FormatPath(formattedPath)
 
